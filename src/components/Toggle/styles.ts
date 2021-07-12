@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Switch, { ReactSwitchProps } from 'react-switch';
+import Switch, { SwitchProps } from '@material-ui/core/Switch';
 
 export const Container = styled.div`
     display: flex;
@@ -11,11 +11,11 @@ export const ToggleLabel = styled.span`
     align-items: center;
 `;
 
-export const ToggleSelector = styled(Switch).attrs<ReactSwitchProps>(
+export const ToggleSelector = styled(Switch).attrs<SwitchProps>(
     ({ theme }) => ({
         onColor: theme.colors.info,
         offColor: theme.colors.warning,
     })
-)<ReactSwitchProps>`
+)<SwitchProps>`
     margin: 0 7px;
 `;
