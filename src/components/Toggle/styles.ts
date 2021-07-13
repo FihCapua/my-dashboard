@@ -11,11 +11,10 @@ export const ToggleLabel = styled.span`
     align-items: center;
 `;
 
-export const ToggleSelector = styled(Switch).attrs<SwitchProps>(
-    ({ theme }) => ({
-        onColor: theme.colors.info,
-        offColor: theme.colors.warning,
-    })
-)<SwitchProps>`
+export const ToggleSelector = styled(Switch).attrs<SwitchProps>()<SwitchProps>`
+    // ({ theme }) => ({
+    //     onColor: theme.colors.info,
+    //     offColor: theme.colors.warning,
+    // })
     margin: 0 7px;
 `;
