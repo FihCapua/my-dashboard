@@ -12,7 +12,12 @@ const Dashboard: React.FC = () => {
     return (
         <Container>
             <ContentHeader title="Dashboard" lineColor="#E44C4E">
-                <SelectInput options={options} />
+                {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
+                <SelectInput
+                    options={options}
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
+                    onChange={() => {}}
+                />
             </ContentHeader>
         </Container>
     );

@@ -11,7 +11,7 @@ import formatDate from '../../utils/formatDate';
 
 // Essa interface informa quais valores serao recebidos no data
 interface IData {
-    id: number;
+    id: string;
     description: string;
     amountFormatted: string;
     frequency: string;
@@ -29,6 +29,12 @@ interface IRouteParams {
 
 const List: React.FC<IRouteParams> = ({ match }) => {
     const [data, setData] = useState<IData[]>([]);
+    const [monthSelected, setMonthSelected] = useState<string>(
+        String(new Date().getMonth() + 1)
+    );
+    const [yearSelected, setYearSelected] = useState<string>(
+        String(new Date().getFullYear())
+    );
     // Desestruturação do tipo string para os parametros do match, p/ serem lidos no return
     const { type } = match.params;
     // useMemo = além de memorizar valores, ele fica escutando as ações e mudando de acordo com a necessidade
@@ -49,12 +55,22 @@ const List: React.FC<IRouteParams> = ({ match }) => {
     }, [type]);
 
     const months = [
+        { value: 1, label: 'Janeiro' },
+        { value: 2, label: 'Fevereiro' },
+        { value: 3, label: 'Março' },
+        { value: 4, label: 'Abril' },
+        { value: 5, label: 'Maio' },
+        { value: 6, label: 'Junho' },
         { value: 7, label: 'Julho' },
         { value: 8, label: 'Agosto' },
         { value: 9, label: 'Setembro' },
+        { value: 10, label: 'Outubro' },
+        { value: 11, label: 'Novembro' },
+        { value: 12, label: 'Dezembro' },
     ];
 
     const years = [
+        { value: 2020, label: 2020 },
         { value: 2021, label: 2021 },
         { value: 2022, label: 2022 },
         { value: 2023, label: 2023 },
@@ -62,9 +78,19 @@ const List: React.FC<IRouteParams> = ({ match }) => {
 
     // Utiliza a mesma ideia do useMemo, porém ele dispara toda vez que a tela é carregada
     useEffect(() => {
-        const response = listData.map((item) => {
+        // Primeiro a aplicação filtro por mês e ano
+        const filteredDate = listData.filter((item) => {
+            const date = new Date(String(item.date));
+            const month = String(date.getMonth() + 1);
+            const year = String(date.getFullYear());
+
+            return month === monthSelected && year === yearSelected;
+        });
+
+        // E depois devolve todos os valores formatados
+        const formattedData = filteredDate.map((item) => {
             return {
-                id: Math.random() * data.length,
+                id: String(new Date().getTime()) + item.amount,
                 description: item.description,
                 amountFormatted: formatCurrency(Number(item.amount)),
                 frequency: item.frequency,
@@ -73,14 +99,23 @@ const List: React.FC<IRouteParams> = ({ match }) => {
                     item.frequency === 'recorrente' ? '#4E41F0' : '#E44C4E',
             };
         });
-        setData(response);
-    }, []);
+
+        setData(formattedData);
+    }, [listData, monthSelected, yearSelected]);
 
     return (
         <Container>
             <ContentHeader title={options.title} lineColor={options.lineColor}>
-                <SelectInput options={months} />
-                <SelectInput options={years} />
+                <SelectInput
+                    options={months}
+                    defaultValue={monthSelected}
+                    onChange={(event) => setMonthSelected(event.target.value)}
+                />
+                <SelectInput
+                    options={years}
+                    defaultValue={yearSelected}
+                    onChange={(event) => setYearSelected(event.target.value)}
+                />
             </ContentHeader>
 
             <Filter>
