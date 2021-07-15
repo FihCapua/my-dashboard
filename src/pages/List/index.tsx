@@ -36,6 +36,10 @@ const List: React.FC<IRouteParams> = ({ match }) => {
     const [yearSelected, setYearSelected] = useState<string>(
         String(new Date().getFullYear())
     );
+    const [selectFrequency, setSelectFrequency] = useState([
+        'recorrente',
+        'eventual',
+    ]);
     // Desestruturação do tipo string para os parametros do match, p/ serem lidos no return
     const { type } = match.params;
     // useMemo = além de memorizar valores, ele fica escutando as ações e mudando de acordo com a necessidade
@@ -91,6 +95,23 @@ const List: React.FC<IRouteParams> = ({ match }) => {
         });
     }, []);
 
+    const handleFrequencyClick = (frequency: string) => {
+        const alreadySelected = selectFrequency.findIndex(
+            (item) => item === frequency
+        );
+
+        // Se ja estiver com a seleção marcada desmarque
+        if (alreadySelected >= 0) {
+            const filtered = selectFrequency.filter(
+                (item) => item !== frequency
+            );
+            // manda só o que o usuario escolheu manter filtrado
+            setSelectFrequency(filtered);
+        } else {
+            setSelectFrequency((prev) => [...prev, frequency]); // pega o valor selecionado anterior espalha e adiciona mais um filtro caso o usuario selecione
+        }
+    };
+
     // Utiliza a mesma ideia do useMemo, porém ele dispara toda vez que a tela é carregada
     useEffect(() => {
         // Primeiro a aplicação filtro por mês e ano
@@ -99,7 +120,11 @@ const List: React.FC<IRouteParams> = ({ match }) => {
             const month = String(date.getMonth() + 1);
             const year = String(date.getFullYear());
 
-            return month === monthSelected && year === yearSelected;
+            return (
+                month === monthSelected &&
+                year === yearSelected &&
+                selectFrequency.includes(item.frequency)
+            );
         });
 
         // E depois devolve todos os valores formatados
@@ -116,7 +141,7 @@ const List: React.FC<IRouteParams> = ({ match }) => {
         });
 
         setData(formattedData);
-    }, [listData, monthSelected, yearSelected]);
+    }, [listData, monthSelected, yearSelected, selectFrequency]);
 
     return (
         <Container>
@@ -136,13 +161,19 @@ const List: React.FC<IRouteParams> = ({ match }) => {
             <Filter>
                 <button
                     type="button"
-                    className="tag-filter tag-filter-recurrent"
+                    className={`tag-filter tag-filter-recurrent ${
+                        selectFrequency.includes('recorrente') && 'tag-actived'
+                    }`}
+                    onClick={() => handleFrequencyClick('recorrente')}
                 >
                     Recorrentes
                 </button>
                 <button
                     type="button"
-                    className="tag-filter tag-filter-eventual"
+                    className={`tag-filter tag-filter-eventual ${
+                        selectFrequency.includes('eventual') && 'tag-actived'
+                    }`}
+                    onClick={() => handleFrequencyClick('eventual')}
                 >
                     Eventuais
                 </button>
