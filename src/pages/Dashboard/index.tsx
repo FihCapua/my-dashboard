@@ -10,6 +10,7 @@ import { Container, Content } from './styles';
 import happyImg from '../../assets/happy.svg';
 import grinningImg from '../../assets/grinning.svg';
 import sadImg from '../../assets/sad.svg';
+import opsImg from '../../assets/ops.svg';
 import WalletBox from '../../components/WalletBox';
 import MessageBox from '../../components/MessageBox';
 import PieChartBox from '../../components/PieChartBox';
@@ -106,6 +107,15 @@ const Dashboard: React.FC = () => {
                     'Verifique seus gastos e tente cortar alguns gastos desnecessários',
                 icon: sadImg,
             };
+        } else if (totalGains === 0 && totalExpenses === 0) {
+            return {
+                title: 'Ooops',
+                description:
+                    'Neste mês, não há registros de entradas ou saídas',
+                footerText:
+                    'Parece que você nao fez nenhum registro no mês e ano selecionado',
+                icon: opsImg,
+            };
         } else if (totalBalance === 0) {
             return {
                 title: 'Ufaaa',
@@ -122,26 +132,28 @@ const Dashboard: React.FC = () => {
                 icon: happyImg,
             };
         }
-    }, [totalBalance]);
+    }, [totalBalance, totalGains, totalExpenses]);
 
     // Atualização do gráfico de pizza
     const relationExepensesVsGains = useMemo(() => {
         const total = totalGains + totalExpenses;
 
-        const percentGains = (totalGains / total) * 100;
-        const percentExpenses = (totalExpenses / total) * 100;
+        const percentGains = Number(((totalGains / total) * 100).toFixed(1));
+        const percentExpenses = Number(
+            ((totalExpenses / total) * 100).toFixed(1)
+        );
 
         const data = [
             {
                 name: 'Entradas',
                 value: totalGains,
-                percent: Number(percentGains.toFixed(1)),
+                percent: percentGains ? percentGains : 0,
                 color: '#E44C4E',
             },
             {
                 name: 'Saídas',
                 value: totalExpenses,
-                percent: Number(percentExpenses.toFixed(1)),
+                percent: percentExpenses ? percentExpenses : 0,
                 color: '#F7931B',
             },
         ];
