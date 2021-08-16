@@ -1,8 +1,12 @@
 import React from 'react';
 import LogoImg from '../../assets/logo.svg';
+import Input from '../../components/Input';
 import { Container, Logo, Form, FormTitle } from './styles';
 
 const SignIn: React.FC = () => {
+    const loaderPrevent = (e) => {
+        e.preventDefault();
+    };
     return (
         <Container>
             <Logo>
@@ -10,11 +14,11 @@ const SignIn: React.FC = () => {
                 <h1>Minha Carteira</h1>
             </Logo>
 
-            <Form>
+            <Form onSubmit={loaderPrevent}>
                 <FormTitle>Entrar</FormTitle>
 
-                <input type="text"></input>
-                <input type="text"></input>
+                <Input type="email" required placeholder="Email:" />
+                <Input type="password" required placeholder="Senha:" />
 
                 <button type="submit">Acessar</button>
             </Form>
