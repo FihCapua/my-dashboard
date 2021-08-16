@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, ToggleLabel, ToggleSelector } from './styles';
 
-// componente que só recebe parametro nao tem return (componente puro)
-const Toggle: React.FC = () => {
-    const [toggleOnline, setToggleOnline] = useState(false);
+interface IToggleProps {
+    labelLeft: string;
+    labelRight: string;
+    checked: boolean;
+    onChange(): void;
+}
 
-    return (
-        <Container>
-            <ToggleLabel>Light</ToggleLabel>
-            <ToggleSelector
-                checked={toggleOnline}
-                checkedIcon={false}
-                uncheckedIcon={false}
-                onChange={() => setToggleOnline(!toggleOnline)}
-            />
-            <ToggleLabel>Dark</ToggleLabel>
-        </Container>
-    );
-};
+// componente que só recebe parametro nao tem return (componente puro)
+const Toggle: React.FC<IToggleProps> = ({
+    labelLeft,
+    labelRight,
+    checked,
+    onChange,
+}) => (
+    <Container>
+        <ToggleLabel>{labelLeft}</ToggleLabel>
+        <ToggleSelector
+            checked={checked}
+            uncheckedIcon={false}
+            checkedIcon={false}
+            onChange={onChange}
+        />
+        <ToggleLabel>{labelRight}</ToggleLabel>
+    </Container>
+);
 
 export default Toggle;
