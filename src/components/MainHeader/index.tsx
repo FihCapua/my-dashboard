@@ -7,6 +7,7 @@ import {
 } from "./style";
 
 import emojis from '../../utils/emojis'
+import { Toggle } from "../Toggle";
 
 export const MainHeader: React.FC = () => {
     const emoji = useMemo(() => {
@@ -17,7 +18,7 @@ export const MainHeader: React.FC = () => {
 
   return (
     <Container>
-      <h1>Toggle</h1>
+      <Toggle />
 
       <Profile>
         <Welcome>Olá, {emoji}</Welcome>
