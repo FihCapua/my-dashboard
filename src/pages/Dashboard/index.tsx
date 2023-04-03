@@ -1,5 +1,10 @@
+import { ContentHeader } from "../../components/ContentHeader"
+import { Container } from "./style"
+
 export const Dashboard: React.FC = () => {
     return(
-        <h1>Hello Dashboard!</h1>
+        <Container>
+            <ContentHeader />
+        </Container>
     )
 }

@@ -1,7 +1,13 @@
 import { Container } from "./style"
 
-export const Content: React.FC = () => {
+type ContentProps = {
+    children: React.ReactNode
+}
+
+export const Content: React.FC<ContentProps> = ({ children }) => {
     return(
-        <Container>Hello Dashboard!</Container>
+        <Container>
+            {children}
+        </Container>
     )
 }
