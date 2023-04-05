@@ -3,11 +3,11 @@ import { Content } from "../Content"
 import { MainHeader } from "../MainHeader"
 import { Grid } from "./style"
 
-type LayoutProps = {
+interface ILayoutProps {
     children: React.ReactNode
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+export const Layout: React.FC<ILayoutProps> = ({ children }) => {
     return(
         <Grid>
             <MainHeader />

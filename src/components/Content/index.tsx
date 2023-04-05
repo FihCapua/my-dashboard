@@ -1,10 +1,10 @@
 import { Container } from "./style"
 
-type ContentProps = {
+interface IContentProps {
     children: React.ReactNode
 }
 
-export const Content: React.FC<ContentProps> = ({ children }) => {
+export const Content: React.FC<IContentProps> = ({ children }) => {
     return(
         <Container>
             {children}
