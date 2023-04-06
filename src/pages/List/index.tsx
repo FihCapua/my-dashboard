@@ -15,78 +15,15 @@ export const List: React.FC = () => {
       <ContentHeader title="List" lineColor="#E44C4E">
         <SelectInput options={options} />
       </ContentHeader>
-      <Content>
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-        <HistoryFinanceCard
-          cardColor="#313862"
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="05/05/1992"
-          amount={(135.5).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-        />
-      </Content>
+      <HistoryFinanceCard
+        tagColor="#E44C4E"
+        title="Conta de Luz"
+        subtitle="05/05/1992"
+        amount={(135.5).toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })}
+      />
     </Container>
   );
 };
