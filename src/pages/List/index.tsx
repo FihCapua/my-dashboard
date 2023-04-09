@@ -1,8 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ContentHeader } from "../../components/ContentHeader";
 import { HistoryFinanceCard } from "../../components/HistoryFInanceCard";
 import { SelectInput } from "../../components/SelectInput";
 import { Container, Filters } from "./style";
+
+import { gains } from "../../mock/gains";
+import { expenses } from "../../mock/expenses";
 
 interface IRouteParams {
   match: {
@@ -12,7 +15,17 @@ interface IRouteParams {
   } 
 }
 
+interface IDataProps {
+  id: string,
+  description: string,
+  amountFormatted: string,
+  dateFormatted: string,
+  tagColor: string
+}
+
 export const List: React.FC<IRouteParams> = ({ match }) => {
+  const [data, setData] = useState<IDataProps[]>([])
+
   const type = match.params.type
 
 
@@ -22,6 +35,10 @@ export const List: React.FC<IRouteParams> = ({ match }) => {
 
   const lineColor = useMemo(() => {
     return type === 'entry-balance' ? '#F7931B' : '#E44C4E'
+  }, [type])
+
+  const dataControl = useMemo(() => {
+    return type === 'entry-balance' ? gains : expenses
   }, [type])
 
   const months = [
@@ -46,6 +63,21 @@ export const List: React.FC<IRouteParams> = ({ match }) => {
     { value: 2020, label: 2020 },
   ]
 
+  useEffect(() => {
+    const response = dataControl.map(item => {
+      return {
+        id: String(Math.random() * data.length),
+        description: item.description,
+        amountFormatted: Number(item.amount).toLocaleString(),
+        dateFormatted: item.date,
+        tagColor: item.frequency
+      }
+    })
+
+    setData(response)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Container>
       <ContentHeader title={title} lineColor={lineColor}>
@@ -62,15 +94,18 @@ export const List: React.FC<IRouteParams> = ({ match }) => {
         </button>
       </Filters>
 
-      <HistoryFinanceCard
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="05/05/1992"
-        amount={(135.5).toLocaleString("pt-br", {
-          style: "currency",
-          currency: "BRL",
-        })}
-      />
+      {
+        data.map(item => (
+          <HistoryFinanceCard
+            key={item.id}
+            title={item.description}
+            subtitle={item.dateFormatted}
+            amount={`R$ ${item.amountFormatted}`}
+            tagColor={item.tagColor === 'recorrente' ? '#4E41F0' : '#E44C4E'}
+          />
+        ))
+      }
+
     </Container>
   );
 };
