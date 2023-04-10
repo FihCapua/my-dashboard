@@ -20,7 +20,7 @@ export const Filters = styled.div`
 
     &:hover {
       opacity: 0.7;
-      transform: translateX(10px);
+      transform: translateX(1px);
     }
   }
 
