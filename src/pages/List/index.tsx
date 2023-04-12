@@ -7,6 +7,8 @@ import { Container, Filters } from "./style";
 import { gains } from "../../mock/gains";
 import { expenses } from "../../mock/expenses";
 
+import { listOfMonths } from "../../utils/listOfMonths";
+
 interface IRouteParams {
   match: {
     params: {
@@ -40,34 +42,42 @@ export const List: React.FC<IRouteParams> = ({ match }) => {
     return type === 'entry-balance' ? '#F7931B' : '#E44C4E'
   }, [type])
 
-  const dataControl = useMemo(() => {
+  const listDate = useMemo(() => {
     return type === 'entry-balance' ? gains : expenses
   }, [type])
 
-  const months = [
-    { value: 1, label: "Janeiro" },
-    { value: 2, label: "Fevereiro" },
-    { value: 3, label: "Março" },
-    { value: 4, label: "Abril" },
-    { value: 5, label: "Maio" },
-    { value: 6, label: "Junho" },
-    { value: 7, label: "Julho" },
-    { value: 8, label: "Agosto" },
-    { value: 9, label: "Setembro" },
-    { value: 10, label: "Outubro" },
-    { value: 11, label: "Novembro" },
-    { value: 12, label: "Dezembro" },
-  ];
+  const months = useMemo(() => {
+    return listOfMonths.map((month, index) => {
+      return {
+        value: index + 1,
+        label: month
+      }
+    })
+  }, [listDate])
+  
 
-  const years = [
-    { value: 2023, label: 2023 },
-    { value: 2022, label: 2022 },
-    { value: 2021, label: 2021 },
-    { value: 2020, label: 2020 },
-  ]
+  const years = useMemo(() => {
+    let uniqueYears: number[] = [];
+
+    listDate.forEach(item => {
+      const date = new Date(item.date)
+      const year = date.getFullYear()
+
+      if(!uniqueYears.includes(year)) {
+        uniqueYears.push(year)
+      }
+    })
+
+    return uniqueYears.map(year => {
+      return {
+        value: year,
+        label: year
+      }
+    })
+  }, [listDate])
 
   useEffect(() => {
-    const filteredDate = dataControl.filter(item => {
+    const filteredDate = listDate.filter(item => {
       const date = new Date(item.date)
       const month = String(date.getMonth() + 1)
       const year = String(date.getFullYear())
@@ -86,7 +96,7 @@ export const List: React.FC<IRouteParams> = ({ match }) => {
     })
 
     setData(formattedData)
-  }, [dataControl, monthSelected, yearSelected])
+  }, [listDate, monthSelected, yearSelected])
 
   return (
     <Container>

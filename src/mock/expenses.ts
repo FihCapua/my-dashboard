@@ -1,5 +1,5 @@
 export const expenses = [
-    {"description":"Energia elétrica",      "amount":"150.55","type":"saída","frequency":"recorrente","date":"2020-01-10"},
+    {"description":"Energia elétrica",      "amount":"150.55","type":"saída","frequency":"recorrente","date":"2023-01-10"},
     {"description":"Água",                  "amount":"75.55", "type":"saída","frequency":"recorrente","date":"2020-01-15"},
     {"description": "Telefone",             "amount":"99.99", "type":"saída","frequency":"recorrente","date":"2020-01-23"},
     {"description":"Plano de Saúde",        "amount":"300.00","type":"saída","frequency":"recorrente","date":"2020-01-23"},
@@ -21,7 +21,7 @@ export const expenses = [
     {"description":"Parcela do Celular 2/5","amount":"150.99","type":"saída","frequency":"eventual",  "date":"2020-03-18"},
     {"description":"Troca de Oléo do carro","amount":"90.00", "type":"saída","frequency":"eventual",  "date":"2020-03-23"},
     {"description":"Energia elétrica",      "amount":"75.99", "type":"saída","frequency":"recorrente","date":"2020-04-10"},
-    {"description":"Água",                  "amount":"80.33", "type":"saída","frequency":"recorrente","date":"2020-04-15"},
+    {"description":"Água",                  "amount":"80.33", "type":"saída","frequency":"recorrente","date":"2023-04-15"},
     {"description":"Telefone",              "amount":"99.99", "type":"saída","frequency":"recorrente","date":"2020-04-23"},
     {"description":"Plano de Saúde",        "amount":"300.00","type":"saída","frequency":"recorrente","date":"2020-04-23"},
     {"description":"Compras do mês",        "amount":"600.00","type":"saída","frequency":"recorrente","date":"2020-04-25"},
