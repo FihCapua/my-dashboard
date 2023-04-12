@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, Controllers, TitleContainer } from "./style"
 
 interface IContentHeaderProps {

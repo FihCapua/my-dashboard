@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, Header, LogImg, MenuContainer, MenuItemLink, Title } from "./style"
 import logo from '../../assets/logo.svg'
 
