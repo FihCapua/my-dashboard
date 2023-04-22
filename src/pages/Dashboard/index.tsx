@@ -8,6 +8,8 @@ import { expenses } from "../../mock/expenses";
 
 import { listOfMonths } from "../../utils/listOfMonths";
 import { WalletBox } from "../../components/WalletBox";
+import { MessageBox } from "../../components/MessageBox";
+import happyFace from "../../assets/happy.svg";
 
 export const Dashboard: React.FC = () => {
   const [monthSelected, setMonthSelected] = useState<number>(
@@ -106,6 +108,13 @@ export const Dashboard: React.FC = () => {
           amount={150}
           icon={"arrowDown"}
           footerLabel="atualizado c/ base nas entradas e saídas"
+        />
+
+        <MessageBox
+          title="Muito bem!"
+          description="Sua Carteira está positiva!"
+          icon={happyFace}
+          footerText="Considere investir o seu saldo"
         />
       </Content>
     </Container>
