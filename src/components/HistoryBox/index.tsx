@@ -30,12 +30,12 @@ export const HistoryBox: React.FC<IHistoryBoxProps> = ({
 
       <LegendContainer>
         <Legend color={lineColorAmountEntry}>
-          <div>25%</div>
-          <span>Entradas</span>
+          <span></span>
+          <small>Entradas</small>
         </Legend>
         <Legend color={lineColorAmountOutput}>
-          <div>25%</div>
-          <span>Saídas</span>
+          <span></span>
+          <small>Saídas</small>
         </Legend>
       </LegendContainer>
     </Header>

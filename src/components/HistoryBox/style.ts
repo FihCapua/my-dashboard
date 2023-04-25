@@ -42,7 +42,7 @@ export const Legend = styled.li<ILegendProps>`
   margin-bottom: 7px;
   margin-left: 7px;
 
-  > div {
+  > span {
     font-size: 14px;
     font-weight: bold;
     text-align: center;
