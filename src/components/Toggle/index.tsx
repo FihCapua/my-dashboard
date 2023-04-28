@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import { Container, ToggleLabel, SwicthToggle } from "./style";
 
-export const Toggle: React.FC = () => {
-  const [checked, setChecked] = useState(false);
-  const handleChange = (nextChecked: boolean) => {
-    setChecked(nextChecked);
-  };
+interface IToggleProps {
+  labelLeft: string;
+  labelRight: string;
+  checked: boolean;
+  onChange(): void;
+}
 
+export const Toggle: React.FC<IToggleProps> = ({
+  labelLeft,
+  labelRight,
+  checked,
+  onChange
+}) => {
   return (
     <Container>
-      <ToggleLabel>Light</ToggleLabel>
+      <ToggleLabel>{labelLeft}</ToggleLabel>
       <SwicthToggle
         checked={checked}
         uncheckedIcon={false}
         checkedIcon={false}
-        onChange={handleChange}
+        onChange={onChange}
       />
-      <ToggleLabel>Dark</ToggleLabel>
+      <ToggleLabel>{labelRight}</ToggleLabel>
     </Container>
   );
 };
