@@ -23,13 +23,37 @@ export const Container = styled.div`
     }
 
     span {
-        font-size: 18px;
-        font-weight: 500;
+        font-weight: bold;
+        font-size: 35px;
     }
 
     > small {
         font-size: 12px;
         position: absolute;
         bottom: 10px;
+    }
+
+    @media (max-width: 770px) {
+        > section > span {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        > section > h1 {
+            word-wrap: break-word;
+            font-size: 20px; 
+        }
+
+        > section > h1 > span {
+            font-size: 22px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        width: 100%;
+
+        > section {
+            margin-top: 30px;
+        }
     }
 `

@@ -38,17 +38,18 @@ export const WalletBox: React.FC<IWalletBoxProps> = ({
   };
   return (
     <Container color={color}>
-      <span>{title}</span>
-      <h1>
-        <CountUp
-          end={amount}
-          prefix="R$ "
-          separator="."
-          decimal=","
-          decimals={2}
-          style={{ fontWeight: 'bold', fontSize: '35px' }}
-        />
-      </h1>
+      <section>
+        <span>{title}</span>
+        <h1>
+          <CountUp
+            end={amount}
+            prefix="R$ "
+            separator="."
+            decimal=","
+            decimals={2}
+          />
+        </h1>
+      </section>
       {selectIcon && <img src={selectIcon()} alt={title} />}
       <small>{footerLabel}</small>
     </Container>
