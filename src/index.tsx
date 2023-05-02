@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/GlobalStyles.ts';
 import App from './App';
 import { ThemeContextProvider } from './hook/theme';
+import { AuthProvider } from './hook/auth';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeContextProvider>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </ThemeContextProvider>
   </React.StrictMode>
 );
