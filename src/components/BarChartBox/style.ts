@@ -12,6 +12,13 @@ export const Container = styled.div`
     background-color: ${props => props.theme.colors.tertiary};
     color: ${props => props.theme.colors.white};
     border-radius: 7px;
+
+    @media (max-width: 1200px) {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
 `
 
 export const SideLeft = styled.aside`
@@ -40,6 +47,20 @@ export const Legend = styled.div<ILegendProps>`
         align-items: center;
         margin-right: 5px;
         margin-left: 16px;
+    }
+
+    @media (max-width: 1200px) {
+        > div {
+            width: 30px;
+            height: 30px;
+
+            font-size: 1opx;
+            line-height: 30px;
+        }
+
+        > span {
+            font-size: 12px;
+        }
     }
 `
 
