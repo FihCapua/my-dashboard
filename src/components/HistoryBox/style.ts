@@ -27,6 +27,10 @@ export const Header = styled.div`
     margin-bottom: 20px;
     padding-left: 16px;
   }
+
+  @media(max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 
 export const LegendContainer = styled.ul`
@@ -52,5 +56,12 @@ export const Legend = styled.li<ILegendProps>`
     border-radius: 5px;
     background-color: ${(props) => props.color};
     margin-right: 5px;
+  }
+
+  @media(max-width: 1200px) {
+    > div {
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
