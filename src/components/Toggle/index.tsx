@@ -8,7 +8,7 @@ interface IToggleProps {
   onChange(): void;
 }
 
-export const Toggle: React.FC<IToggleProps> = ({
+export const ToggleComponent: React.FC<IToggleProps> = ({
   labelLeft,
   labelRight,
   checked,
