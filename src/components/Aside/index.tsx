@@ -6,6 +6,7 @@ import {
   MenuContainer,
   MenuItemButton,
   MenuItemLink,
+  ThemeToggleFooter,
   Title,
   ToggleMenu,
 } from "./style";
@@ -20,18 +21,27 @@ import {
   MdMenu
 } from "react-icons/md";
 import { useAuth } from "../../hook/auth";
+import { useTheme } from "../../hook/theme";
+import { ToggleComponent } from "../Toggle";
 
 export const Aside: React.FC = () => {
-    const [toggleMenuIsOpened, setToggleMenuIsOpened] = useState(false);
     const { signOut } = useAuth();
+    const { toggleTheme, theme} = useTheme();
+    const [toggleMenuIsOpened, setToggleMenuIsOpened] = useState(false);
+    const [darkTheme, setDarkTheme] = useState(() => theme.title === 'dark' ? true : false);
 
     const handleToggleMenu = () => {
         setToggleMenuIsOpened(!toggleMenuIsOpened)
     }
+
+    const handleChangeTheme = () => {
+        setDarkTheme(!darkTheme)
+        toggleTheme()
+    }
   return (
     <Container menuIsOpen={toggleMenuIsOpened}>
       <Header>
-        <ToggleMenu>
+        <ToggleMenu onClick={handleToggleMenu}>
             {toggleMenuIsOpened ? <MdClose /> : <MdMenu />}
         </ToggleMenu>
         <LogImg src={logo} alt="Logo meu dashboard" />
@@ -59,6 +69,15 @@ export const Aside: React.FC = () => {
           Sair
         </MenuItemButton>
       </MenuContainer>
+
+      <ThemeToggleFooter menuIsOpen={toggleMenuIsOpened}>
+        <ToggleComponent
+            checked={darkTheme}
+            labelLeft="Light"
+            labelRight="Dark"
+            onChange={handleChangeTheme}
+        />
+      </ThemeToggleFooter>
     </Container>
   );
 };
