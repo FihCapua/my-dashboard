@@ -10,7 +10,6 @@ export const Container = styled.div<IContainerProps>`
   background-color: ${(props) => props.theme.colors.secondary};
 
   padding-left: 20px;
-  border-right: 1px solid ${(props) => props.theme.colors.gray};
 
   position: relative;
 
@@ -42,9 +41,8 @@ export const LogImg = styled.img`
   width: 40px;
   height: 40px;
 
-  @media (max-width: 600px) {
-    width: 25px;
-    height: 25px;
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 
@@ -100,3 +98,25 @@ export const MenuItemButton = styled.button`
     margin-right: 5px;
   }
 `;
+
+export const ToggleMenu = styled.button`
+  width: 40px;
+  height: 40px;
+
+  border-radius: 5px;
+  font-size: 22px;
+  background-color: ${props => props.theme.colors.warning};
+  color: ${props => props.theme.colors.white};
+  transition: opacity 0.3;
+  display: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 800px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`
